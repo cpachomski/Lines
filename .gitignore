@@ -1,0 +1,7 @@
+
+app/js/dist/
+*gulpfile.js
+node_modules
+
+
+
