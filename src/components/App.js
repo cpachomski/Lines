@@ -42,10 +42,6 @@ App.propTypes = {
   children: PropTypes.node
 };
 
-App.contextTypes = {
-  router: PropTypes.object.isRequired
-};
-
 function mapStateToProps(state) {
   return {
   };
