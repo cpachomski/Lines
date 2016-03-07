@@ -14,7 +14,6 @@ export default React.createClass({
 	componentDidMount () {
 		window.addEventListener('keypress', (e) => {
 			if (e.keyCode === 99) {
-
 				this.toggleVisible();
 			}
 		})
