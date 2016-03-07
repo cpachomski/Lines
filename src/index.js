@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ControlPanel from './components/ControlPanel';
+import App from './components/app';
 
 import normalize from './styles/normalize.scss';
 
 
-ReactDOM.render(<ControlPanel />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 
 

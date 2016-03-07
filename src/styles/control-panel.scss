@@ -8,6 +8,12 @@
 	color: white;
 	font-family: "Verdana";
 	padding: 25px;
+	transition: top 0.3s ease-in;
+
+	&.hidden {
+		top: -250px;
+	}
+
 	h1 {
 		padding-left: 25px;
 	}
