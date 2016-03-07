@@ -5,28 +5,32 @@
 	transform: translate(-50%, -50%);
 	width: 700px;
 	height: 200px;
-	background-color: #333;
+	background-color: #444;
+	z-index: 20;
 	animation: fadein 1.2s ease-in;
 	&.hidden {
 		display: none;
 	}
 
 	> h3 {
-		color: #333;
-		font-size: 50px;
+		color: #444;
+		font-size: 90px;
 		margin-bottom: 0px;
 		margin-top: 25px;
 		text-transform: uppercase;
 		position: absolute;
-		left: 50%;
+		left: 14%;
+		font-family: 'Six Caps', sans-serif;
+		font-weight: 400;
+		letter-spacing: 20px;
 		transform: translateX(-50%);
-		top: -35%;
+		top: -64%;
 	}
 
 	> i {
 		position: absolute;
 		font-size: 40px;
-		color: white;
+		color: black;
 		right: 25px;
 		top: 25px;
 		opacity: 0;
@@ -49,7 +53,7 @@
 				margin-bottom: 25px;
 			}
 			font-size: 25px;
-			color: white;
+			color: black;
 			min-width: 700px;
 			text-align: center;
 
