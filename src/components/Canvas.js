@@ -1,12 +1,11 @@
 import React from 'react';
 
-
 export default React.createClass({
 
 	getInitialState () {
 		return {
-			backgroundColor: '#000000',
-			lineColor: '#FFFFFF',
+			backgroundColor: '#FFFFFF',
+			lineColor: 'red',
 			lineWidth: 1,
 			autoDraw: false,
 			graphFunc: 'clickConnect'
@@ -15,12 +14,15 @@ export default React.createClass({
 
 	componentDidMount () {
 		this.canvas = document.getElementById('canvas');
-		this.context = canvas.getContext('2d');
+		this.context = this.canvas.getContext('2d');
 		this.context.imageSmoothingEnabled = true;
+		this.coords = [];
 
 		this.setCanvasSize();
-		window.addEventListener('resize', this.setCanvasSize);
 		this.applyStyles();
+		
+		window.addEventListener('resize', this.setCanvasSize);
+		window.addEventListener('mousedown', this.addPoint);
 	},
 
 	setCanvasSize () {
@@ -30,8 +32,33 @@ export default React.createClass({
 
 	applyStyles () {
 		this.canvas.style.background =  this.state.backgroundColor;
-		this.canvas.lineWidth = this.state.lineWidth;
-		this.canvas.strokeStyle = this.state.lineColor;
+		this.context.lineWidth = this.state.lineWidth;
+		this.context.strokeStyle = this.state.lineColor;
+	},
+
+	getClickPosition (e) {
+		return [e.x, e.y]; 
+	},
+
+	addPoint (e) {
+		let newPoint = this.getClickPosition(e);
+		this.coords.push(newPoint);
+
+		if ( this.coords.length > 1 ) {
+			console.log('line drawn')
+			this.coords.forEach((coord) => {
+				this.drawLine(coord, newPoint);
+			})
+		}
+	},
+
+
+	drawLine (o, d) {
+		this.context.beginPath();
+		this.context.moveTo(o[0], o[1]);
+		this.context.lineTo(d[0], d[1]);
+		this.applyStyles();
+		this.context.stroke();
 	},
 
 	render () {
@@ -39,4 +66,4 @@ export default React.createClass({
 			<span></span>
 		)
 	}
-})
+});	
