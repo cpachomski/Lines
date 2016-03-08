@@ -57,7 +57,6 @@ let addPoint = function(e) {
 
 
 
-
 init();
 
 export default {

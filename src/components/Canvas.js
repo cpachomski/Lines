@@ -12,11 +12,11 @@ export default React.createClass({
 		this.applyStyles();
 		
 		window.addEventListener('resize', this.setCanvasSize);
-		window.addEventListener('mousedown', this.addPoint);
+		this.canvas.addEventListener('mousedown', this.addPoint);
 	},
 
 	setCanvasSize () {
-		this.canvas.width = innerWidth;
+		this.canvas.width = window.innerWidth;
 		this.canvas.height = window.innerHeight;
 	},
 
@@ -42,13 +42,20 @@ export default React.createClass({
 		}
 	},
 
-
-	drawLine (o, d) {
+	drawLine (o, d) { 
 		this.context.beginPath();
 		this.context.moveTo(o[0], o[1]);
 		this.context.lineTo(d[0], d[1]);
 		this.applyStyles();
 		this.context.stroke();
+	},
+
+	componentDidUpdate () {
+		this.canvas.style.backgroundColor = this.props.backgroundColor;
+		this.context.lineWidth = this.props.lineWidth;
+		this.context.strokeStyle = this.props.lineColor;
+		console.log('yeah')
+		console.log(this.props);
 	},
 
 	render () {

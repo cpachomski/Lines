@@ -1,5 +1,6 @@
 import React from 'react';
 import Canvas from './Canvas';
+import {SwatchesPicker} from 'react-color';
 
 import styles from '../styles/control-panel.scss';
 
@@ -17,7 +18,6 @@ export default React.createClass({
 	},
 
 	componentDidMount () {
-
 		window.addEventListener('keypress', (e) => {
 			if (e.keyCode === 99) {
 				this.toggleVisible();
@@ -34,6 +34,18 @@ export default React.createClass({
 		}
 		this.setState({
 			visible: showState
+		})
+	},
+
+	updateLineColor (color) {
+		this.setState({
+			lineColor: color.hex
+		})
+	},
+
+	updateBackgroundColor (color) {
+		this.setState({
+			backgroundColor: color.hex
 		})
 	},
 
@@ -55,6 +67,10 @@ export default React.createClass({
 							<li>Auto Draw: {!this.state.autoDraw  ? 'ON' : 'OFF'}</li>
 							<li>Graphing Function: {this.state.graphFunc}</li>
 						</ul>
+					</div>
+					<div className='color-pickers'>
+						<SwatchesPicker onChangeComplete={this.updateLineColor}/>
+						 <SwatchesPicker onChangeComplete={this.updateBackgroundColor}/>
 					</div>
 				</div>
 			</div>
