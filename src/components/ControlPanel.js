@@ -10,7 +10,7 @@ export default React.createClass({
 		return {
 			visible: false,
 			backgroundColor: '#000000',
-			lineColor: '#FFFFFF',
+			lineColor: '#eee',
 			autoDraw: 'false',
 			graphFunc: 'clickConnect',
 		}

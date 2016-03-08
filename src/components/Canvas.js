@@ -2,16 +2,6 @@ import React from 'react';
 
 export default React.createClass({
 
-	getInitialState () {
-		return {
-			backgroundColor: '#FFFFFF',
-			lineColor: 'red',
-			lineWidth: 1,
-			autoDraw: false,
-			graphFunc: 'clickConnect'
-		}
-	},
-
 	componentDidMount () {
 		this.canvas = document.getElementById('canvas');
 		this.context = this.canvas.getContext('2d');
@@ -31,9 +21,9 @@ export default React.createClass({
 	},
 
 	applyStyles () {
-		this.canvas.style.background =  this.state.backgroundColor;
-		this.context.lineWidth = this.state.lineWidth;
-		this.context.strokeStyle = this.state.lineColor;
+		this.canvas.style.background =  this.props.backgroundColor;
+		this.context.lineWidth = this.props.lineWidth;
+		this.context.strokeStyle = this.props.lineColor;
 	},
 
 	getClickPosition (e) {
