@@ -2,6 +2,7 @@ import React from 'react';
 
 
 export default React.createClass({
+
 	getInitialState () {
 		return {
 			backgroundColor: '#000000',
@@ -22,16 +23,15 @@ export default React.createClass({
 		this.applyStyles();
 	},
 
+	setCanvasSize () {
+		this.canvas.width = innerWidth;
+		this.canvas.height = window.innerHeight;
+	},
+
 	applyStyles () {
 		this.canvas.style.background =  this.state.backgroundColor;
 		this.canvas.lineWidth = this.state.lineWidth;
 		this.canvas.strokeStyle = this.state.lineColor;
-	},
-
-	setCanvasSize () {
-		console.log('resize')
-		this.canvas.width = innerWidth;
-		this.canvas.height = window.innerHeight;
 	},
 
 	render () {
