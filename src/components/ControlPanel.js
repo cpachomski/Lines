@@ -14,6 +14,7 @@ export default React.createClass({
 			lineColor: '#eee',
 			lineWidth: 1,
 			autoDraw: 'false',
+			showMouseCoords: false,
 			graphFunc: 'clickConnect',
 		}
 	},
@@ -26,6 +27,23 @@ export default React.createClass({
 		})
 	},
 
+	autoGenerate () {
+		let randX = this.getRandomPoint(0, this.canvas.width);
+		let randY = this.getRandomPoint(0, this.canvas.height);
+
+		this.coords.push([randX, randY]);
+
+		if (this.coords.length > 1 ) {
+			this.coords.forEach((coord) => {
+
+			});
+		}
+	},
+
+	getRandomPoint () {
+		return min + Math.floor(Math.random() * (max - min + 1));
+	},
+
 	toggleVisible () {
 		let showState;
 		if (this.state.visible === false) {
@@ -35,6 +53,19 @@ export default React.createClass({
 		}
 		this.setState({
 			visible: showState
+		})
+	},
+
+	toggleMouseCoords () {
+		let show;
+
+		if (this.state.showMouseCoords === false) {
+			show = true;
+		} else {
+			show = false;
+		}
+		this.setState({
+			showMouseCoords: show
 		})
 	},
 
@@ -67,6 +98,7 @@ export default React.createClass({
 							<li>Line Color: {this.state.lineColor}</li>
 							<li>Auto Draw: {!this.state.autoDraw  ? 'ON' : 'OFF'}</li>
 							<li>Graphing Function: {this.state.graphFunc}</li>
+							<li onClick={this.toggleMouseCoords}>Show Mouse Coordinates <i className={this.state.showMouseCoords ? 'fa fa-check' : 'fa fa-times'}></i></li>
 						</ul>
 					</div>
 					<div className='color-pickers'>
