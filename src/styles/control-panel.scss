@@ -51,11 +51,16 @@
 					margin-left: 75px;
 				}
 			}
-			> button {
+
+			.buttons > button:nth-child(2) {
+				margin-top: 15px;
+			}
+
+			button {
 				background-color: #222;
 				padding: 10px 15px;
-				float: right;
-				margin-top: 100px;
+				margin: 0px;
+				display: block;
 				border: 1px solid #333;
 				transition: border-color .1s linear;
 				min-width: 200px;

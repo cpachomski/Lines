@@ -149,13 +149,12 @@ export default React.createClass({
 									onChange={this.updateLineWidth}
 								/>
 							</div>
-							<div className='auto-draw'>
+							<div className='buttons'>
 								<label>Auto Draw</label>
 								<button value='click' onClick={this.updateAutoFunction}> Auto Click </button>
 								<button value='glitch' onClick={this.updateAutoFunction}> Auto Glitch </button>
-								<span>Coloring Function</span>
+								<button onClick={this.clearCanvas}>Clear Canvas</button>
 							</div>
-							<button onClick={this.clearCanvas}>Clear Canvas</button>
 						</div>
 						<div className='color-pickers'>
 							<SwatchesPicker onChangeComplete={this.updateLineColor}/>
