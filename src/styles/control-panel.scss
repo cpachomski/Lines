@@ -55,6 +55,12 @@
 			.buttons > button:nth-child(2) {
 				margin-top: 15px;
 			}
+			.buttons > button:nth-child(4) {
+				&:hover {
+					color:  #b71c1c;
+					border-color:  #b71c1c;
+				}
+			}
 
 			button {
 				background-color: #222;
@@ -62,7 +68,7 @@
 				margin: 0px;
 				display: block;
 				border: 1px solid #333;
-				transition: border-color .1s linear;
+				transition: all .1s linear;
 				min-width: 200px;
 				min-height: 50px;
 				&:active, &:focus {
