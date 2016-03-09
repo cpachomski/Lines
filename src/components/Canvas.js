@@ -1,6 +1,8 @@
 import React from 'react';
+import SetIntervalMixin from './SetIntervalMixin';
 
 export default React.createClass({
+	mixins: [SetIntervalMixin],
 
 	componentDidMount () {
 		this.canvas = document.getElementById('canvas');
@@ -13,6 +15,35 @@ export default React.createClass({
 		
 		window.addEventListener('resize', this.setCanvasSize);
 		this.canvas.addEventListener('mousedown', this.addPoint);
+	},
+
+	autoRunner (drawingFunction) {
+		let iterations = 0;
+		if (drawingFunction == 'pointConnect') {
+			let useFunction = this.autoPointConnect;
+		} else if(drawingFunction =="glitch")
+		this.setInterval()
+	},
+
+	autoPointConnect () {
+		let randX = this.getRandomPoint(0, this.canvas.width);
+		let randY = this.getRandomPoint(0, this.canvas.height);
+
+		this.coords.push([randX, randY]);
+
+		if (this.coords.length > 1 ) {
+			this.coords.forEach((coord) => {
+
+			});
+		}
+	},
+
+	autoGlitch () {
+
+	},
+
+	getRandomPoint () {
+		return min + Math.floor(Math.random() * (max - min + 1));
 	},
 
 	setCanvasSize () {
@@ -55,7 +86,7 @@ export default React.createClass({
 	componentDidUpdate () {
 		this.canvas = document.getElementById('canvas');
 		this.context = this.canvas.getContext('2d');
-		
+
 		this.context.strokeStyle = this.props.lineColor;
 		this.context.lineWidth = this.props.lineWidth;
 		this.canvas.style.backgroundColor = this.props.backgroundColor;

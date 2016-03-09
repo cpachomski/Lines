@@ -16,6 +16,8 @@ export default React.createClass({
 			lineWidthInt: true,
 			showMouseCoords: false,
 			autoFunc: 'clickConnect',
+			iterations: 100,
+			iterationInterval: 100,
 		}
 	},
 
@@ -25,23 +27,6 @@ export default React.createClass({
 				this.toggleVisible();
 			}
 		})
-	},
-
-	autoGenerate () {
-		let randX = this.getRandomPoint(0, this.canvas.width);
-		let randY = this.getRandomPoint(0, this.canvas.height);
-
-		this.coords.push([randX, randY]);
-
-		if (this.coords.length > 1 ) {
-			this.coords.forEach((coord) => {
-
-			});
-		}
-	},
-
-	getRandomPoint () {
-		return min + Math.floor(Math.random() * (max - min + 1));
 	},
 
 	toggleVisible () {
@@ -69,14 +54,14 @@ export default React.createClass({
 		})
 	},
 
-	toggleAutoDraw (e) {
+	runAutoDraw (e) {
 		if (e.target.checked) {
 			this.setState({
-				autoDraw: false
+				autoFunc: false
 			})
 		} else {
 			this.setState({
-				autoDraw: true
+				autoFunc: true
 			})
 		}
 
@@ -105,13 +90,6 @@ export default React.createClass({
 		})
 	},
 
-	updateAutoFunction (e) {
-		let autoFunc = e.target.value;
-		this.setState({
-			autoFunc: autoFunc
-		});
-	},
-
 	clearCanvas () {
 		this._canvas.context.clearRect(0, 0, canvas.width, canvas.height)
 		this._canvas.coords = [];
@@ -127,6 +105,8 @@ export default React.createClass({
 						lineColor={this.state.lineColor}
 						lineWidth={this.state.lineWidth}
 						autoFunc={this.state.autoFunc}
+						iterations={this.state.iterations}
+						iterationInterval={this.state.iterationInterval}
 					/>
 					<h1>Lines</h1>
 					<div className='current-settings'>
@@ -134,8 +114,6 @@ export default React.createClass({
 							<li>Background Color: {this.state.backgroundColor}</li>
 							<li>Line Color: {this.state.lineColor}</li>
 							<li>Line Width: {this.state.lineWidth}px</li>
-							<li>Auto Draw: {this.state.autoDraw  ? 'ON' : 'OFF'}</li>
-							<li>Graphing Function: {this.state.graphFunc}</li>
 							<li onClick={this.toggleMouseCoords}>Show Mouse Coordinates <i className={this.state.showMouseCoords ? 'fa fa-check' : 'fa fa-times'}></i></li>
 						</ul>
 					</div>
@@ -151,8 +129,8 @@ export default React.createClass({
 							</div>
 							<div className='buttons'>
 								<label>Auto Draw</label>
-								<button value='click' onClick={this.updateAutoFunction}> Auto Click </button>
-								<button value='glitch' onClick={this.updateAutoFunction}> Auto Glitch </button>
+								<button value='pointConnect' onClick={this.runAutoDraw}> Auto Click </button>
+								<button value='glitchConnect' onClick={this.runAutoDraw}> Auto Glitch </button>
 								<button onClick={this.clearCanvas}>Clear Canvas</button>
 							</div>
 						</div>
