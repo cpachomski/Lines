@@ -15,8 +15,10 @@ export default React.createClass({
 			lineWidth: 1,
 			lineWidthInt: true,
 			showMouseCoords: false,
-			iterations: 20,
-			iterationInterval: 1000,
+			iterations: 1000,
+			iterationInterval: 100,
+			glitchModulus: 13,
+			glitchPointDist: 5,
 		}
 	},
 
@@ -97,6 +99,8 @@ export default React.createClass({
 						autoFunc={this.state.autoFunc}
 						iterations={this.state.iterations}
 						iterationInterval={this.state.iterationInterval}
+						glitchModulus={this.state.glitchModulus}
+						glitchPointDist={this.state.glitchPointDist}
 					/>
 					<h1>Lines</h1>
 					<div className='current-settings'>

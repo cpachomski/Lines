@@ -47,7 +47,6 @@ export default React.createClass({
 	},
 
 	autoPointConnect () {
-		console.log('being used');
 		let randX = this.getRandomPoint(0, this.canvas.width);
 		let randY = this.getRandomPoint(0, this.canvas.height);
 
@@ -63,7 +62,27 @@ export default React.createClass({
 	},
 
 	autoGlitchConnect () {
-		console.log('autoGlitchConnect');
+		//start at center of canvas
+		if (this.coords.length < 1) {
+			let firstPoint = [this.canvas.width/2, this.canvas.height/2];
+			this.coords.push(firstPoint);
+		} else {
+			let newX = this.coords[this.coords.length - 1][0] + this.getRandomPoint(this.props.glitchPointDist, (-1 * this.props.glitchPointDist));
+			let newY = this.coords[this.coords.length - 1][1] + this.getRandomPoint(this.props.glitchPointDist, (-1 * this.props.glitchPointDist));
+
+			if (newX % this.props.glitchModulus === 0 || newY & this.props.glitchModulus === 0 ) {
+				newX = this.getRandomPoint(0, this.canvas.width);
+        		newY = this.getRandomPoint(0, this.canvas.height);
+			}
+			let newCoord = [newX, newY];
+			console.log(newCoord);
+			this.coords.push(newCoord);
+
+			this.coords.forEach((coord) => {
+				this.drawLine(coord, newCoord);
+			});
+
+		}
 	},
 
 	getRandomPoint (min, max) {
