@@ -9,6 +9,7 @@
 	color: white;
 	font-family: "Verdana";
 	padding: 25px;
+	overflow: hidden;
 	transition: top 0.2s ease-in-out;
 
 	&.hidden {
@@ -24,6 +25,7 @@
 		top: 0px;
 		right: 100px;
 		padding: 15px;
+		overflow: scroll;
 		.col-1{
 			display: inline-block;
 			vertical-align: top;
@@ -53,6 +55,10 @@
 
 		.color-pickers {
 			display: inline-block;
+			overflow: scroll !important;
+			div {
+				background-color: #333;
+			}
 			> div {
 				width: 72px !important;
 				display: inline-block;

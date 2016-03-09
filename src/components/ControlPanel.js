@@ -123,7 +123,7 @@ export default React.createClass({
 							<li>Background Color: {this.state.backgroundColor}</li>
 							<li>Line Color: {this.state.lineColor}</li>
 							<li>Line Width: {this.state.lineWidth}px</li>
-							<li>Auto Draw: {this.state.autoDraw  ? 'OFF' : 'On'}</li>
+							<li>Auto Draw: {this.state.autoDraw  ? 'OFF' : 'ON'}</li>
 							<li>Graphing Function: {this.state.graphFunc}</li>
 							<li onClick={this.toggleMouseCoords}>Show Mouse Coordinates <i className={this.state.showMouseCoords ? 'fa fa-check' : 'fa fa-times'}></i></li>
 						</ul>
