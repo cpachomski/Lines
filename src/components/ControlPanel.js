@@ -12,6 +12,7 @@ export default React.createClass({
 			visible: false,
 			backgroundColor: '#000000',
 			lineColor: '#eee',
+			lineWidth: 1,
 			autoDraw: 'false',
 			graphFunc: 'clickConnect',
 		}
@@ -39,13 +40,13 @@ export default React.createClass({
 
 	updateLineColor (color) {
 		this.setState({
-			lineColor: color.hex
+			lineColor: '#' + color.hex
 		})
 	},
 
 	updateBackgroundColor (color) {
 		this.setState({
-			backgroundColor: color.hex
+			backgroundColor:  '#' + color.hex
 		})
 	},
 
