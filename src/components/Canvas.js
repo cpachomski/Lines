@@ -53,6 +53,12 @@ export default React.createClass({
 
 		this.coords.push([randX, randY]);
 
+		if (this.coords.length > 1) {
+			this.coords.forEach((coord) => {
+				this.drawLine(coord, [randX, randY])
+			});
+		}
+
 		
 	},
 

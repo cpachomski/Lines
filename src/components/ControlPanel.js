@@ -15,8 +15,8 @@ export default React.createClass({
 			lineWidth: 1,
 			lineWidthInt: true,
 			showMouseCoords: false,
-			iterations: 100,
-			iterationInterval: 10,
+			iterations: 20,
+			iterationInterval: 1000,
 		}
 	},
 
