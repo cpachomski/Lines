@@ -1,5 +1,6 @@
 import React from 'react';
 import SetIntervalMixin from './SetIntervalMixin';
+import ColorFunctions from './ColorFunctions';
 
 export default React.createClass({
 
@@ -35,6 +36,7 @@ export default React.createClass({
 			let runningFunc = setInterval(() => {
 				this.autoGlitchConnect();
 				iterations +=1;
+				console.log(iterations);
 
 				if (iterations >= this.props.iterations){
 					clearInterval(runningFunc);
@@ -51,6 +53,12 @@ export default React.createClass({
 		let randY = this.getRandomPoint(0, this.canvas.height);
 
 		this.coords.push([randX, randY]);
+
+		console.log(this.context);
+		console.log(this.context.strokeStyle,' before');
+
+		this.context.strokeStyle = this.applyColorFunction();
+		console.log(this.context.strokeStyle, ' after');
 
 		if (this.coords.length > 1) {
 			this.coords.forEach((coord) => {
@@ -77,6 +85,10 @@ export default React.createClass({
 			let newCoord = [newX, newY];
 			console.log(newCoord);
 			this.coords.push(newCoord);
+
+
+
+			this.context.strokeStyle = this.applyColorFunction();
 
 			this.coords.forEach((coord) => {
 				this.drawLine(coord, newCoord);
@@ -108,7 +120,11 @@ export default React.createClass({
 		let newPoint = this.getClickPosition(e);
 		this.coords.push(newPoint);
 
-		this.applyStyles();
+		console.log(this.context);
+		console.log(this.context.strokeStyle);
+
+		this.context.strokeStyle = this.applyColorFunction();
+		console.log(this.context.strokeStyle);
 
 		if ( this.coords.length > 1 ) {
 			this.coords.forEach((coord) => {
@@ -117,11 +133,21 @@ export default React.createClass({
 		}
 	},
 
+	applyColorFunction () {
+		if (this.props.colorFunction == 'randomColor') {
+			return ColorFunctions.randomColor();
+		} else if (this.props.colorFunction == 'randomGrayscale') {	
+			console.log('applied randomGrayscale');
+			return ColorFunctions.randomGrayscale();
+		} else {
+			return this.props.lineColor;
+		}
+	},
+
 	drawLine (o, d) { 
 		this.context.beginPath();
 		this.context.moveTo(o[0], o[1]);
 		this.context.lineTo(d[0], d[1]);
-		this.applyStyles();
 		this.context.stroke();
 	},
 
