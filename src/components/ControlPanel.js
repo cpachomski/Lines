@@ -14,7 +14,7 @@ export default React.createClass({
 			lineColor: '#444',
 			lineWidth: 1,
 			lineWidthInt: true,
-			autoDraw: 'false',
+			autoDraw: false,
 			showMouseCoords: false,
 			graphFunc: 'clickConnect',
 		}
@@ -70,6 +70,20 @@ export default React.createClass({
 		})
 	},
 
+	toggleAutoDraw (e) {
+		if (e.target.checked) {
+			this.setState({
+				autoDraw: false
+			})
+		} else {
+			this.setState({
+				autoDraw: true
+			})
+		}
+
+		console.log(this.state)
+	},
+
 	updateLineColor (color) {
 		this.setState({
 			lineColor: '#' + color.hex
@@ -109,7 +123,7 @@ export default React.createClass({
 							<li>Background Color: {this.state.backgroundColor}</li>
 							<li>Line Color: {this.state.lineColor}</li>
 							<li>Line Width: {this.state.lineWidth}px</li>
-							<li>Auto Draw: {!this.state.autoDraw  ? 'ON' : 'OFF'}</li>
+							<li>Auto Draw: {this.state.autoDraw  ? 'OFF' : 'On'}</li>
 							<li>Graphing Function: {this.state.graphFunc}</li>
 							<li onClick={this.toggleMouseCoords}>Show Mouse Coordinates <i className={this.state.showMouseCoords ? 'fa fa-check' : 'fa fa-times'}></i></li>
 						</ul>
@@ -128,6 +142,7 @@ export default React.createClass({
 								<label>Auto Draw</label>
 								<input
 									type='checkbox'
+									onChange={this.toggleAutoDraw}
 								/>	
 							</div>
 						</div>
