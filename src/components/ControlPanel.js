@@ -108,7 +108,7 @@ export default React.createClass({
 						<ul> 
 							<li>Background Color: {this.state.backgroundColor}</li>
 							<li>Line Color: {this.state.lineColor}</li>
-							<li>Line Width: {this.state.lineWidth}</li>
+							<li>Line Width: {this.state.lineWidth}px</li>
 							<li>Auto Draw: {!this.state.autoDraw  ? 'ON' : 'OFF'}</li>
 							<li>Graphing Function: {this.state.graphFunc}</li>
 							<li onClick={this.toggleMouseCoords}>Show Mouse Coordinates <i className={this.state.showMouseCoords ? 'fa fa-check' : 'fa fa-times'}></i></li>

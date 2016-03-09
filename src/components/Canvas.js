@@ -55,8 +55,8 @@ export default React.createClass({
 	componentDidUpdate () {
 		this.canvas = document.getElementById('canvas');
 		this.context = this.canvas.getContext('2d');
+		
 		this.context.strokeStyle = this.props.lineColor;
-		console.log(this.props.lineWidth);
 		this.context.lineWidth = this.props.lineWidth;
 		this.canvas.style.backgroundColor = this.props.backgroundColor;
 	},
