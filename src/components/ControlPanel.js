@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';	
 import Canvas from './Canvas';
 import {SwatchesPicker} from 'react-color';
 
@@ -15,11 +16,11 @@ export default React.createClass({
 			lineWidth: 1,
 			lineWidthInt: true,
 			showMouseCoords: false,
-			iterations: 20,
-			iterationInterval: 500,
+			iterations: 100,
+			iterationInterval: 1000,
 			glitchModulus: 13,
 			glitchPointDist: 5,
-			colorFunction: 'randomColor'
+			colorFunction: null,
 		}
 	},
 
@@ -82,9 +83,29 @@ export default React.createClass({
 		})
 	},
 
-	updateColorFunction (e) {
-		console.log(e.target.value);
+
+	handleColorFunctionUpdate (e) {
+
+		if($(e.target).hasClass('active')){
+			this.setState({
+				colorFunction: null
+			}, ()=>{console.log(this.state)});
+		} else {
+			if (e.target.value == 'randomColor') {
+				this.setState({
+					colorFunction: 'randomColor'
+				}, ()=>{console.log(this.state)});
+			} else if (e.target.value == 'randomGrayscale') {
+				this.setState({
+					colorFunction: 'randomGrayscale'
+				}, ()=>{console.log(this.state)})
+			}
+		}
+		$('button.active').removeClass('active');
+
+		$(e.target).toggleClass('active');
 	},
+
 
 	clearCanvas () {
 		this._canvas.context.clearRect(0, 0, canvas.width, canvas.height)
@@ -130,8 +151,8 @@ export default React.createClass({
 								<label>Auto Draw</label>
 								<button value='pointConnect' onClick={this.runAutoDraw}> Auto Click </button>
 								<button value='glitchConnect' onClick={this.runAutoDraw}> Auto Glitch </button>
-								<button value='randomColor' onClick={this.updateColorFunction}>Random Colors</button>
-								<button value='randomGrayscale' onClick={this.updateColorFunction}>Random Grayscale</button>
+								<button className='random-color-toggle' value='randomColor' onClick={this.handleColorFunctionUpdate}>Random Colors</button>
+								<button className='random-grayscale-toggle ' value='randomGrayscale' onClick={this.handleColorFunctionUpdate}>Random Grayscale</button>
 								<button onClick={this.clearCanvas}>Clear Canvas</button>
 
 							</div>

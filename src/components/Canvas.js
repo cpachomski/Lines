@@ -137,7 +137,6 @@ export default React.createClass({
 		if (this.props.colorFunction == 'randomColor') {
 			return ColorFunctions.randomColor();
 		} else if (this.props.colorFunction == 'randomGrayscale') {	
-			console.log('applied randomGrayscale');
 			return ColorFunctions.randomGrayscale();
 		} else {
 			return this.props.lineColor;
