@@ -19,35 +19,57 @@
 		padding-left: 25px;
 	}
 
-	.color-pickers {
+	.controls {
 		position: absolute;
 		top: 0px;
 		right: 100px;
-		> div {
-			width: 72px !important;
+		padding: 15px;
+		.line-width {
 			display: inline-block;
-			margin: 5px 25px;
-			margin-top: 45px;
-			&:first-child{
-				&:before {
-					content:'Line Color';
-					position: absolute;
-					top: 10px;
+			vertical-align: top;
+			> input {
+				color: black;
+				border: 1px solid gray;
+				padding: 5px 0px 5px 11px;
+				max-width: 50px;
+				background-color: #333;
+				color: white;
+				&:active, &:focus {
+					outline: none !important;
+					border-color: white;
 				}
 			}
-			&:nth-child(2){
-				&:before {
-					content:'Background Color';
-					position: absolute;
-					top: 10px;
-				}
-			}
-			> div {
-				height: 190px !important;	
-				overflow: scroll;
-				background-color: white;
+		}
 
+		.color-pickers {
+			display: inline-block;
+			> div {
+				width: 72px !important;
+				display: inline-block;
+				margin: 5px 25px;
+				margin-top: 45px;
+				&:first-child{
+					&:before {
+						content:'Line Color';
+						position: absolute;
+						top: 10px;
+					}
+				}
+				&:nth-child(2){
+					&:before {
+						content:'Background Color';
+						position: absolute;
+						top: 10px;
+					}
+				}
+				> div {
+					height: 190px !important;	
+					overflow: scroll;
+					background-color: white;
+
+				}
 			}
 		}
 	}
+
 }

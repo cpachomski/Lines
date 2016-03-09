@@ -11,8 +11,9 @@ export default React.createClass({
 		return {
 			visible: false,
 			backgroundColor: '#000000',
-			lineColor: '#eee',
+			lineColor: '#444',
 			lineWidth: 1,
+			lineWidthInt: true,
 			autoDraw: 'false',
 			showMouseCoords: false,
 			graphFunc: 'clickConnect',
@@ -75,6 +76,16 @@ export default React.createClass({
 		})
 	},
 
+	updateLineWidth (e) {
+		let lineWidth = e.target.value;
+		if(parseInt(e.target.value) >= 0){
+			this.setState({
+				lineWidth: parseInt(lineWidth),
+				lineWidthInt: true
+			});
+		}
+	},
+
 	updateBackgroundColor (color) {
 		this.setState({
 			backgroundColor:  '#' + color.hex
@@ -88,6 +99,7 @@ export default React.createClass({
 					<Canvas 
 						backgroundColor={this.state.backgroundColor}
 						lineColor={this.state.lineColor}
+						lineWidth={this.state.lineWidth}
 						autoDraw={this.state.autoDraw}
 						graphFunc={this.state.autoDraw}
 					/>
@@ -96,14 +108,25 @@ export default React.createClass({
 						<ul> 
 							<li>Background Color: {this.state.backgroundColor}</li>
 							<li>Line Color: {this.state.lineColor}</li>
+							<li>Line Width: {this.state.lineWidth}</li>
 							<li>Auto Draw: {!this.state.autoDraw  ? 'ON' : 'OFF'}</li>
 							<li>Graphing Function: {this.state.graphFunc}</li>
 							<li onClick={this.toggleMouseCoords}>Show Mouse Coordinates <i className={this.state.showMouseCoords ? 'fa fa-check' : 'fa fa-times'}></i></li>
 						</ul>
 					</div>
-					<div className='color-pickers'>
-						<SwatchesPicker onChangeComplete={this.updateLineColor}/>
-						 <SwatchesPicker onChangeComplete={this.updateBackgroundColor}/>
+					<div className='controls'>
+						<div className='line-width'>
+							<label>Line Width (px) : </label>
+							<input
+								type='number'
+								value={this.state.lineWidth}
+								onChange={this.updateLineWidth}
+							/>
+						</div>
+						<div className='color-pickers'>
+							<SwatchesPicker onChangeComplete={this.updateLineColor}/>
+							 <SwatchesPicker onChangeComplete={this.updateBackgroundColor}/>
+						</div>
 					</div>
 				</div>
 			</div>
