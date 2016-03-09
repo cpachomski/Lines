@@ -51,6 +51,26 @@
 					margin-left: 75px;
 				}
 			}
+			> button {
+				background-color: #222;
+				padding: 10px 15px;
+				float: right;
+				margin-top: 100px;
+				border: 1px solid #333;
+				transition: border-color .1s linear;
+				min-width: 200px;
+				min-height: 50px;
+				&:active, &:focus {
+					outline: none;
+				}
+				&:active{
+					opacity: .4;
+				}
+				&:hover {
+					border-color: #666;
+				}
+
+			}
 		}
 
 		.color-pickers {

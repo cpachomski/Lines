@@ -106,6 +106,11 @@ export default React.createClass({
 		})
 	},
 
+	clearCanvas () {
+		this._canvas.context.clearRect(0, 0, canvas.width, canvas.height)
+		this._canvas.coords = [];
+	},
+
 	render () {
 		return (
 			<div className={this.state.visible ? 'ctrlpanel' : 'ctrlpanel hidden'}>
@@ -116,6 +121,7 @@ export default React.createClass({
 						lineWidth={this.state.lineWidth}
 						autoDraw={this.state.autoDraw}
 						graphFunc={this.state.autoDraw}
+						ref={(c) => this._canvas = c}
 					/>
 					<h1>Lines</h1>
 					<div className='current-settings'>
@@ -145,6 +151,7 @@ export default React.createClass({
 									onChange={this.toggleAutoDraw}
 								/>	
 							</div>
+							<button onClick={this.clearCanvas}>Clear Canvas</button>
 						</div>
 						<div className='color-pickers'>
 							<SwatchesPicker onChangeComplete={this.updateLineColor}/>
