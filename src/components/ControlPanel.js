@@ -15,10 +15,11 @@ export default React.createClass({
 			lineWidth: 1,
 			lineWidthInt: true,
 			showMouseCoords: false,
-			iterations: 1000,
-			iterationInterval: 100,
+			iterations: 20,
+			iterationInterval: 500,
 			glitchModulus: 13,
 			glitchPointDist: 5,
+			colorFunction: 'randomColor'
 		}
 	},
 
@@ -57,7 +58,6 @@ export default React.createClass({
 
 	runAutoDraw (e) {
 		this._canvas.autoRunner(e.target.value);
-		console.log(this.state)
 	},
 
 	updateLineColor (color) {
@@ -82,6 +82,10 @@ export default React.createClass({
 		})
 	},
 
+	updateColorFunction (e) {
+		console.log(e.target.value);
+	},
+
 	clearCanvas () {
 		this._canvas.context.clearRect(0, 0, canvas.width, canvas.height)
 		this._canvas.coords = [];
@@ -101,6 +105,7 @@ export default React.createClass({
 						iterationInterval={this.state.iterationInterval}
 						glitchModulus={this.state.glitchModulus}
 						glitchPointDist={this.state.glitchPointDist}
+						colorFunction={this.state.colorFunction}
 					/>
 					<h1>Lines</h1>
 					<div className='current-settings'>
@@ -125,7 +130,10 @@ export default React.createClass({
 								<label>Auto Draw</label>
 								<button value='pointConnect' onClick={this.runAutoDraw}> Auto Click </button>
 								<button value='glitchConnect' onClick={this.runAutoDraw}> Auto Glitch </button>
+								<button value='randomColor' onClick={this.updateColorFunction}>Random Colors</button>
+								<button value='randomGrayscale' onClick={this.updateColorFunction}>Random Grayscale</button>
 								<button onClick={this.clearCanvas}>Clear Canvas</button>
+
 							</div>
 						</div>
 						<div className='color-pickers'>
