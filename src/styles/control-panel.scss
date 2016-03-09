@@ -2,7 +2,7 @@
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	height: 250px;
+	height: 400px;
 	width: 100%;
 	background-color: #333;
 	z-index: 2;
@@ -10,7 +10,7 @@
 	font-family: "Verdana";
 	padding: 25px;
 	overflow: hidden;
-	transition: top 0.2s ease-in-out;
+	transition: top 0.3s ease-out;
 
 	.current-settings {
 		> ul {
@@ -23,7 +23,7 @@
 	}
 
 	&.hidden {
-		top: -300px;
+		top: -450px;
 	}
 
 	h1 {
@@ -72,7 +72,7 @@
 			.buttons > button:nth-child(2) {
 				margin-top: 15px;
 			}
-			.buttons > button:nth-child(4) {
+			.buttons > button:nth-child(6) {
 				&:hover {
 					color:  #b71c1c;
 					border-color:  #b71c1c;
@@ -104,14 +104,16 @@
 		.color-pickers {
 			display: inline-block;
 			overflow: scroll !important;
+			margin-top: 73px;
 			div {
-				background-color: #333;
 			}
 			> div {
 				width: 72px !important;
 				display: inline-block;
 				margin: 5px 25px;
-				margin-top: 45px;
+				height: 315px !important;	
+	
+
 				&:first-child{
 					&:before {
 						content:'Line Color';
@@ -127,9 +129,8 @@
 					}
 				}
 				> div {
-					height: 190px !important;	
+					
 					overflow: scroll;
-					background-color: white;
 
 				}
 			}
