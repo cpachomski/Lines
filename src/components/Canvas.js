@@ -2,7 +2,6 @@ import React from 'react';
 import SetIntervalMixin from './SetIntervalMixin';
 
 export default React.createClass({
-	mixins: [SetIntervalMixin],
 
 	componentDidMount () {
 		this.canvas = document.getElementById('canvas');
@@ -17,32 +16,51 @@ export default React.createClass({
 		this.canvas.addEventListener('mousedown', this.addPoint);
 	},
 
-	autoRunner (drawingFunction) {
+	autoRunner (runFunc) {
 		let iterations = 0;
-		if (drawingFunction == 'pointConnect') {
-			let useFunction = this.autoPointConnect;
-		} else if(drawingFunction =="glitch")
-		this.setInterval()
+
+		if (runFunc == 'pointConnect') {
+
+			let runningFunc = setInterval(() => {
+				this.autoPointConnect();
+				iterations += 1;
+
+				if (iterations >= this.props.iterations){
+					clearInterval(runningFunc);
+				}
+
+			}, this.props.iterationInterval);
+
+		} else if(runFunc == "glitchConnect") {
+			let runningFunc = setInterval(() => {
+				this.autoGlitchConnect();
+				iterations +=1;
+
+				if (iterations >= this.props.iterations){
+					clearInterval(runningFunc);
+				}
+
+			}, this.props.iterationInterval);
+		} else {
+			return;
+		}
 	},
 
 	autoPointConnect () {
+		console.log('being used');
 		let randX = this.getRandomPoint(0, this.canvas.width);
 		let randY = this.getRandomPoint(0, this.canvas.height);
 
 		this.coords.push([randX, randY]);
 
-		if (this.coords.length > 1 ) {
-			this.coords.forEach((coord) => {
-
-			});
-		}
+		
 	},
 
-	autoGlitch () {
-
+	autoGlitchConnect () {
+		console.log('autoGlitchConnect');
 	},
 
-	getRandomPoint () {
+	getRandomPoint (min, max) {
 		return min + Math.floor(Math.random() * (max - min + 1));
 	},
 
@@ -64,7 +82,6 @@ export default React.createClass({
 	addPoint (e) {
 		let newPoint = this.getClickPosition(e);
 		this.coords.push(newPoint);
-
 
 		this.applyStyles();
 

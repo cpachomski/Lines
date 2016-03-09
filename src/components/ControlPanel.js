@@ -15,9 +15,8 @@ export default React.createClass({
 			lineWidth: 1,
 			lineWidthInt: true,
 			showMouseCoords: false,
-			autoFunc: 'clickConnect',
 			iterations: 100,
-			iterationInterval: 100,
+			iterationInterval: 10,
 		}
 	},
 
@@ -55,16 +54,7 @@ export default React.createClass({
 	},
 
 	runAutoDraw (e) {
-		if (e.target.checked) {
-			this.setState({
-				autoFunc: false
-			})
-		} else {
-			this.setState({
-				autoFunc: true
-			})
-		}
-
+		this._canvas.autoRunner(e.target.value);
 		console.log(this.state)
 	},
 
