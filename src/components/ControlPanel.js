@@ -14,9 +14,8 @@ export default React.createClass({
 			lineColor: '#444',
 			lineWidth: 1,
 			lineWidthInt: true,
-			autoDraw: false,
 			showMouseCoords: false,
-			graphFunc: 'clickConnect',
+			autoFunc: 'clickConnect',
 		}
 	},
 
@@ -106,6 +105,13 @@ export default React.createClass({
 		})
 	},
 
+	updateAutoFunction (e) {
+		let autoFunc = e.target.value;
+		this.setState({
+			autoFunc: autoFunc
+		});
+	},
+
 	clearCanvas () {
 		this._canvas.context.clearRect(0, 0, canvas.width, canvas.height)
 		this._canvas.coords = [];
@@ -116,12 +122,11 @@ export default React.createClass({
 			<div className={this.state.visible ? 'ctrlpanel' : 'ctrlpanel hidden'}>
 				<div className='wrapper'>
 					<Canvas 
+						ref={(c) => this._canvas = c}
 						backgroundColor={this.state.backgroundColor}
 						lineColor={this.state.lineColor}
 						lineWidth={this.state.lineWidth}
-						autoDraw={this.state.autoDraw}
-						graphFunc={this.state.autoDraw}
-						ref={(c) => this._canvas = c}
+						autoFunc={this.state.autoFunc}
 					/>
 					<h1>Lines</h1>
 					<div className='current-settings'>
@@ -129,7 +134,7 @@ export default React.createClass({
 							<li>Background Color: {this.state.backgroundColor}</li>
 							<li>Line Color: {this.state.lineColor}</li>
 							<li>Line Width: {this.state.lineWidth}px</li>
-							<li>Auto Draw: {this.state.autoDraw  ? 'OFF' : 'ON'}</li>
+							<li>Auto Draw: {this.state.autoDraw  ? 'ON' : 'OFF'}</li>
 							<li>Graphing Function: {this.state.graphFunc}</li>
 							<li onClick={this.toggleMouseCoords}>Show Mouse Coordinates <i className={this.state.showMouseCoords ? 'fa fa-check' : 'fa fa-times'}></i></li>
 						</ul>
@@ -146,10 +151,9 @@ export default React.createClass({
 							</div>
 							<div className='auto-draw'>
 								<label>Auto Draw</label>
-								<input
-									type='checkbox'
-									onChange={this.toggleAutoDraw}
-								/>	
+								<button value='click' onClick={this.updateAutoFunction}> Auto Click </button>
+								<button value='glitch' onClick={this.updateAutoFunction}> Auto Glitch </button>
+								<span>Coloring Function</span>
 							</div>
 							<button onClick={this.clearCanvas}>Clear Canvas</button>
 						</div>
