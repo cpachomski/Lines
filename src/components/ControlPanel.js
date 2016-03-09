@@ -115,13 +115,21 @@ export default React.createClass({
 						</ul>
 					</div>
 					<div className='controls'>
-						<div className='line-width'>
-							<label>Line Width (px) : </label>
-							<input
-								type='number'
-								value={this.state.lineWidth}
-								onChange={this.updateLineWidth}
-							/>
+						<div className='col-1'>
+							<div className='line-width'>
+								<label>Line Width (px) : </label>
+								<input
+									type='number'
+									value={this.state.lineWidth}
+									onChange={this.updateLineWidth}
+								/>
+							</div>
+							<div className='auto-draw'>
+								<label>Auto Draw</label>
+								<input
+									type='checkbox'
+								/>	
+							</div>
 						</div>
 						<div className='color-pickers'>
 							<SwatchesPicker onChangeComplete={this.updateLineColor}/>

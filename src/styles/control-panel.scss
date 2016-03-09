@@ -24,19 +24,24 @@
 		top: 0px;
 		right: 100px;
 		padding: 15px;
-		.line-width {
+		.col-1{
 			display: inline-block;
 			vertical-align: top;
-			> input {
-				color: black;
-				border: 1px solid gray;
-				padding: 5px 0px 5px 11px;
-				max-width: 50px;
-				background-color: #333;
-				color: white;
-				&:active, &:focus {
-					outline: none !important;
-					border-color: white;
+			> div {
+				margin-bottom: 10px;
+			}
+			.line-width {
+				> input {
+					color: black;
+					border: 1px solid gray;
+					padding: 5px 0px 5px 11px;
+					max-width: 50px;
+					background-color: #333;
+					color: white;
+					&:active, &:focus {
+						outline: none !important;
+						border-color: white;
+					}
 				}
 			}
 		}
