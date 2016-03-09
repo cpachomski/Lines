@@ -34,8 +34,10 @@ export default React.createClass({
 		let newPoint = this.getClickPosition(e);
 		this.coords.push(newPoint);
 
+
+		this.applyStyles();
+
 		if ( this.coords.length > 1 ) {
-			console.log('line drawn')
 			this.coords.forEach((coord) => {
 				this.drawLine(coord, newPoint);
 			})
@@ -51,11 +53,13 @@ export default React.createClass({
 	},
 
 	componentDidUpdate () {
-		this.canvas.style.backgroundColor = this.props.backgroundColor;
-		this.context.lineWidth = this.props.lineWidth;
-		this.context.strokeStyle = this.props.lineColor;
 		console.log('yeah')
 		console.log(this.props);
+		this.canvas = document.getElementById('canvas');
+		this.context = this.canvas.getContext('2d');
+		this.context.strokeStyle = this.props.lineColor;
+		this.context.lineWidth = this.props.lineWidth;
+		this.canvas.style.backgroundColor = this.props.backgroundColor;
 	},
 
 	render () {

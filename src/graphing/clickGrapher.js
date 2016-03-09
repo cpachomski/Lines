@@ -61,6 +61,5 @@ init();
 
 export default {
 	run () {
-		console.log('run')
 	}
 }
