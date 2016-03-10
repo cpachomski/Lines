@@ -140,10 +140,24 @@ export default React.createClass({
 	},
 
 	printCanvas () {
+		let w = this._canvas.canvas.width;
+		let h = this._canvas.canvas.height;
+		let data = this._canvas.context.getImageData(0,0,w,h);
+		let compositeOperation = this._canvas.context.globalCompositeOperation;
+
+		this._canvas.context.globalCompositeOperation = "destination-over";
+		this._canvas.context.fillStyle = this.state.backgroundColor;
+		this._canvas.context.fillRect(0,0,w,h);
+
+
 		let canvasDataURL = this._canvas.canvas.toDataURL('image/png');
-		let w = window.open('about:blank', 'image from canvas');
-		w.document.write("<img src='" + d + "' alt='from canvas'/>");
-		window.open(canvasDataURL);
+
+		this._canvas.context.clearRect(0,0,w,h);
+		this._canvas.context.putImageData(data, 0,0);
+		this._canvas.context.globalCompositeOperation = compositeOperation;
+
+		let win=window.open();
+		win.document.write("<br><img src='"+canvasDataURL+"'/>");
 	},
 
 	handleColorFunctionUpdate (e) {
