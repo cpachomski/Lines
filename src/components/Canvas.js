@@ -36,7 +36,7 @@ export default React.createClass({
 			let runningFunc = setInterval(() => {
 				this.autoGlitchConnect();
 				iterations +=1;
-				console.log(iterations);
+
 
 				if (iterations >= this.props.iterations){
 					clearInterval(runningFunc);
@@ -54,11 +54,9 @@ export default React.createClass({
 
 		this.coords.push([randX, randY]);
 
-		console.log(this.context);
-		console.log(this.context.strokeStyle,' before');
+
 
 		this.context.strokeStyle = this.applyColorFunction();
-		console.log(this.context.strokeStyle, ' after');
 
 		if (this.coords.length > 1) {
 			this.coords.forEach((coord) => {
@@ -83,7 +81,6 @@ export default React.createClass({
         		newY = this.getRandomPoint(0, this.canvas.height);
 			}
 			let newCoord = [newX, newY];
-			console.log(newCoord);
 			this.coords.push(newCoord);
 
 
@@ -120,11 +117,8 @@ export default React.createClass({
 		let newPoint = this.getClickPosition(e);
 		this.coords.push(newPoint);
 
-		console.log(this.context);
-		console.log(this.context.strokeStyle);
 
 		this.context.strokeStyle = this.applyColorFunction();
-		console.log(this.context.strokeStyle);
 
 		if ( this.coords.length > 1 ) {
 			this.coords.forEach((coord) => {

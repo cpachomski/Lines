@@ -25,10 +25,15 @@ export default React.createClass({
 
 	componentDidMount () {
 		window.addEventListener('keypress', (e) => {
+			console.log(e.keyCode)
 			if (e.keyCode === 99) {
 				this.toggleVisible();
+			} else if (e.keyCode === 112) {
+				console.log('praise')
+				this.printCanvas();
 			}
 		})
+
 	},
 
 	toggleVisible () {
@@ -105,22 +110,28 @@ export default React.createClass({
 		})
 	},
 
+	printCanvas () {
+		let canvasDataURL = this._canvas.canvas.toDataURL('image/png');
+		let w = window.open('about:blank', 'image from canvas');
+		w.document.write("<img src='" + d + "' alt='from canvas'/>");
+		window.open(canvasDataURL);
+	},
 
 	handleColorFunctionUpdate (e) {
 
 		if($(e.target).hasClass('active')){
 			this.setState({
 				colorFunction: null
-			}, ()=>{console.log(this.state)});
+			});
 		} else {
 			if (e.target.value == 'randomColor') {
 				this.setState({
 					colorFunction: 'randomColor'
-				}, ()=>{console.log(this.state)});
+				});
 			} else if (e.target.value == 'randomGrayscale') {
 				this.setState({
 					colorFunction: 'randomGrayscale'
-				}, ()=>{console.log(this.state)})
+				});
 			}
 		}
 		$('button.active').removeClass('active');
