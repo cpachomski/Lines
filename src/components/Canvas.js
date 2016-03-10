@@ -12,7 +12,7 @@ export default React.createClass({
 
 		this.setCanvasSize();
 		this.applyStyles();
-		
+
 		window.addEventListener('resize', this.setCanvasSize);
 		this.canvas.addEventListener('mousedown', this.addPoint);
 	},
@@ -66,19 +66,19 @@ export default React.createClass({
 			});
 		}
 
-		
+
 	},
 
 	autoGlitchConnect () {
 		//start at center of canvas
 		if (this.coords.length < 1) {
-			let firstPoint = [this.canvas.width/2, this.canvas.height/2];
+			let firstPoint = [parseInt(this.canvas.width/2), parseInt(this.canvas.height/2)];
 			this.coords.push(firstPoint);
 		} else {
 			let newX = this.coords[this.coords.length - 1][0] + this.getRandomPoint(this.props.glitchPointDist, (-1 * this.props.glitchPointDist));
 			let newY = this.coords[this.coords.length - 1][1] + this.getRandomPoint(this.props.glitchPointDist, (-1 * this.props.glitchPointDist));
 
-			if (newX % this.props.glitchModulus === 0 || newY & this.props.glitchModulus === 0 ) {
+			if (newX % this.props.glitchModulus == 0 || newY & this.props.glitchModulus == 0 ) {
 				newX = this.getRandomPoint(0, this.canvas.width);
         		newY = this.getRandomPoint(0, this.canvas.height);
 			}
@@ -113,7 +113,7 @@ export default React.createClass({
 	},
 
 	getClickPosition (e) {
-		return [e.x, e.y]; 
+		return [e.x, e.y];
 	},
 
 	addPoint (e) {
@@ -136,14 +136,14 @@ export default React.createClass({
 	applyColorFunction () {
 		if (this.props.colorFunction == 'randomColor') {
 			return ColorFunctions.randomColor();
-		} else if (this.props.colorFunction == 'randomGrayscale') {	
+		} else if (this.props.colorFunction == 'randomGrayscale') {
 			return ColorFunctions.randomGrayscale();
 		} else {
 			return this.props.lineColor;
 		}
 	},
 
-	drawLine (o, d) { 
+	drawLine (o, d) {
 		this.context.beginPath();
 		this.context.moveTo(o[0], o[1]);
 		this.context.lineTo(d[0], d[1]);
@@ -164,4 +164,4 @@ export default React.createClass({
 			<span></span>
 		)
 	}
-});	
+});

@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';	
+import $ from 'jquery';
 import Canvas from './Canvas';
 import {SwatchesPicker} from 'react-color';
 
@@ -16,8 +16,8 @@ export default React.createClass({
 			lineWidth: 1,
 			lineWidthInt: true,
 			showMouseCoords: false,
-			iterations: 100,
-			iterationInterval: 1000,
+			iterations: 1000,
+			iterationInterval: 100,
 			glitchModulus: 13,
 			glitchPointDist: 5,
 			colorFunction: null,
@@ -116,7 +116,7 @@ export default React.createClass({
 		return (
 			<div className={this.state.visible ? 'ctrlpanel' : 'ctrlpanel hidden'}>
 				<div className='wrapper'>
-					<Canvas 
+					<Canvas
 						ref={(c) => this._canvas = c}
 						backgroundColor={this.state.backgroundColor}
 						lineColor={this.state.lineColor}
@@ -130,7 +130,7 @@ export default React.createClass({
 					/>
 					<h1>Lines</h1>
 					<div className='current-settings'>
-						<ul> 
+						<ul>
 							<li>Background Color: {this.state.backgroundColor}</li>
 							<li>Line Color: {this.state.lineColor}</li>
 							<li>Line Width: {this.state.lineWidth}px</li>
