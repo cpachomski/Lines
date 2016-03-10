@@ -14,10 +14,9 @@ export default React.createClass({
 			backgroundColor: '#000000',
 			lineColor: '#444',
 			lineWidth: 1,
-			lineWidthInt: true,
 			showMouseCoords: false,
-			iterations: 1000,
-			iterationInterval: 100,
+			iterations: 750,
+			iterationInterval: 10,
 			glitchModulus: 13,
 			glitchPointDist: 5,
 			colorFunction: null,
@@ -72,7 +71,30 @@ export default React.createClass({
 		if(parseInt(e.target.value) >= 0){
 			this.setState({
 				lineWidth: parseInt(lineWidth),
-				lineWidthInt: true
+			});
+		}
+	},
+
+	updateIterations (e) {
+		if(parseInt(e.target.value) >= 0){
+			this.setState({
+				iterations: parseInt(e.target.value)
+			});
+		}
+	},
+
+	updateIterationInterval (e) {
+		if(parseInt(e.target.value) >= 0){
+			this.setState({
+				iterationInterval: parseInt(e.target.value)
+			});
+		}
+	},
+
+	updateGlitchModulus (e) {
+		if(parseInt(e.target.value) >= 0){
+			this.setState({
+				glitchModulus: parseInt(e.target.value)
 			});
 		}
 	},
@@ -134,6 +156,8 @@ export default React.createClass({
 							<li>Background Color: {this.state.backgroundColor}</li>
 							<li>Line Color: {this.state.lineColor}</li>
 							<li>Line Width: {this.state.lineWidth}px</li>
+							<li>Iterations: {this.state.iterations}</li>
+							<li>Interval: {this.state.iterationInterval}</li>
 							<li onClick={this.toggleMouseCoords}>Show Mouse Coordinates <i className={this.state.showMouseCoords ? 'fa fa-check' : 'fa fa-times'}></i></li>
 						</ul>
 					</div>
@@ -147,8 +171,31 @@ export default React.createClass({
 									onChange={this.updateLineWidth}
 								/>
 							</div>
+							<div className='iterations'>
+								<label>Iterations: </label>
+								<input
+									type='number'
+									value={this.state.iterations}
+									onChange={this.updateIterations}
+								/>
+							</div>
+							<div className='interval'>
+								<label>Interval: </label>
+								<input
+									type='number'
+									value={this.state.iterationInterval}
+									onChange={this.updateIterationInterval}
+								/>
+							</div>
+							<div className='glitch-modulus'>
+								<label>Glitch Modulus: </label>
+								<input
+									type='number'
+									value={this.state.glitchModulus}
+									onChange={this.updateGlitchModulus}
+								/>
+							</div>
 							<div className='buttons'>
-								<label>Auto Draw</label>
 								<button value='pointConnect' onClick={this.runAutoDraw}> Auto Click </button>
 								<button value='glitchConnect' onClick={this.runAutoDraw}> Auto Glitch </button>
 								<button className='random-color-toggle' value='randomColor' onClick={this.handleColorFunctionUpdate}>Random Colors</button>
