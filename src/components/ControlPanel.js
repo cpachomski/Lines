@@ -26,13 +26,14 @@ export default React.createClass({
 
 	componentDidMount () {
 		window.addEventListener('keypress', (e) => {
-			console.log(e.keyCode)
-			if (e.keyCode === 99) {
+			if (e.keyCode === 112) {
 				this.toggleVisible();
-			} else if (e.keyCode === 112) {
+			} else if (e.keyCode === 115) {
 				this.printCanvas();
 			} else if (e.keyCode === 114) {
 				this.runAutoDraw();
+			} else if (e.keyCode === 99) {
+				this.clearCanvas();
 			}
 		})
 
