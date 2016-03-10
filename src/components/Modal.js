@@ -34,8 +34,10 @@ export default React.createClass({
 				<h3>Lines</h3>
 				<i className="fa fa-times-circle" id='modal-toggle'></i>
 				<div className='content text'>
-					<span>Press C to toggle the Control Panel.</span>
-					<span>Press P to save your art.</span>
+					<span>Press P to toggle the Control Panel.</span>
+					<span>Press R to run AutoDraw</span>
+					<span>Press C to clear the canvas </span>
+					<span>Press S to save your art.</span>
 				</div>
 			</div>
 		)
