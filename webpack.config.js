@@ -14,13 +14,17 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      include: /\.js$/,
+      minimize: true
+    })
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: ['uglify', 'react-hot', 'babel'],
         include: path.join(__dirname, 'src')
       },
       {
