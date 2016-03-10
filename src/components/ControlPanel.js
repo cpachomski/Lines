@@ -17,6 +17,7 @@ export default React.createClass({
 			showMouseCoords: false,
 			iterations: 750,
 			iterationInterval: 10,
+			autoFunction: '',
 			glitchModulus: 13,
 			glitchPointDist: 5,
 			colorFunction: null,
@@ -29,8 +30,9 @@ export default React.createClass({
 			if (e.keyCode === 99) {
 				this.toggleVisible();
 			} else if (e.keyCode === 112) {
-				console.log('praise')
 				this.printCanvas();
+			} else if (e.keyCode === 114) {
+				this.runAutoDraw();
 			}
 		})
 
@@ -61,8 +63,8 @@ export default React.createClass({
 		})
 	},
 
-	runAutoDraw (e) {
-		this._canvas.autoRunner(e.target.value);
+	runAutoDraw () {
+		this._canvas.autoRunner(this.state.autoFunction);
 	},
 
 	updateLineColor (color) {
@@ -78,6 +80,32 @@ export default React.createClass({
 				lineWidth: parseInt(lineWidth),
 			});
 		}
+	},
+
+	updateAutoFunction (e) {
+		console.log('hit')
+		if($(e.target).hasClass('active')){
+			this.setState({
+				autoFunction: null
+			});
+			$(e.target).removeClass('active');
+		} else {
+			if (e.target.value == 'pointConnect') {
+				console.log('this one');
+				this.setState({
+					autoFunction: 'pointConnect'
+				});
+			} else if (e.target.value == 'glitchConnect') {
+				console.log('glitch');
+				this.setState({
+					autoFunction: 'glitchConnect'
+				});
+			}
+			$('.auto-function.active').removeClass('active');
+			$(e.target).addClass('active');
+		}
+
+		
 	},
 
 	updateIterations (e) {
@@ -123,6 +151,8 @@ export default React.createClass({
 			this.setState({
 				colorFunction: null
 			});
+			$(e.target).removeClass('active');
+
 		} else {
 			if (e.target.value == 'randomColor') {
 				this.setState({
@@ -133,10 +163,9 @@ export default React.createClass({
 					colorFunction: 'randomGrayscale'
 				});
 			}
+			$('.color-function.active').removeClass('active');
+			$(e.target).addClass('active');
 		}
-		$('button.active').removeClass('active');
-
-		$(e.target).toggleClass('active');
 	},
 
 
@@ -154,7 +183,6 @@ export default React.createClass({
 						backgroundColor={this.state.backgroundColor}
 						lineColor={this.state.lineColor}
 						lineWidth={this.state.lineWidth}
-						autoFunc={this.state.autoFunc}
 						iterations={this.state.iterations}
 						iterationInterval={this.state.iterationInterval}
 						glitchModulus={this.state.glitchModulus}
@@ -207,10 +235,10 @@ export default React.createClass({
 								/>
 							</div>
 							<div className='buttons'>
-								<button value='pointConnect' onClick={this.runAutoDraw}> Auto Click </button>
-								<button value='glitchConnect' onClick={this.runAutoDraw}> Auto Glitch </button>
-								<button className='random-color-toggle' value='randomColor' onClick={this.handleColorFunctionUpdate}>Random Colors</button>
-								<button className='random-grayscale-toggle ' value='randomGrayscale' onClick={this.handleColorFunctionUpdate}>Random Grayscale</button>
+								<button value='pointConnect' className='auto-function' onClick={this.updateAutoFunction}> Auto Click </button>
+								<button value='glitchConnect' className='auto-function' onClick={this.updateAutoFunction}> Auto Glitch </button>
+								<button className='random-color-toggle color-function' value='randomColor' onClick={this.handleColorFunctionUpdate}>Random Colors</button>
+								<button className='random-grayscale-toggle color-function' value='randomGrayscale' onClick={this.handleColorFunctionUpdate}>Random Grayscale</button>
 								<button onClick={this.clearCanvas}>Clear Canvas</button>
 
 							</div>
