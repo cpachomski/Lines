@@ -26,7 +26,7 @@ export default React.createClass({
 
 	componentDidMount () {
 		window.addEventListener('keypress', (e) => {
-			if (e.keyCode === 112) {
+			if (e.keyCode === 100) {
 				this.toggleVisible();
 			} else if (e.keyCode === 115) {
 				this.printCanvas();
@@ -192,7 +192,6 @@ export default React.createClass({
 	render () {
 		return (
 			<div className={this.state.visible ? 'ctrlpanel' : 'ctrlpanel hidden'}>
-				<div className='wrapper'>
 					<Canvas
 						ref={(c) => this._canvas = c}
 						backgroundColor={this.state.backgroundColor}
@@ -204,21 +203,23 @@ export default React.createClass({
 						glitchPointDist={this.state.glitchPointDist}
 						colorFunction={this.state.colorFunction}
 					/>
-					<h1>Lines</h1>
-					<div className='current-settings'>
-						<ul>
-							<li>Background Color: {this.state.backgroundColor}</li>
-							<li>Line Color: {this.state.lineColor}</li>
-							<li>Line Width: {this.state.lineWidth}px</li>
-							<li>Iterations: {this.state.iterations}</li>
-							<li>Interval: {this.state.iterationInterval}</li>
-							<li onClick={this.toggleMouseCoords}>Show Mouse Coordinates <i className={this.state.showMouseCoords ? 'fa fa-check' : 'fa fa-times'}></i></li>
+					<div className='info'>
+						<h1>Lines</h1>
+						
+						<ul className='control-legend'>
+							<li>Controls</li>
+							<li>D: show/hide controls</li>
+							<li>R: run auto generator</li>
+							<li>S: save the canvas</li>
+							<li>C: clear the canvas</li>
 						</ul>
 					</div>
+					
 					<div className='controls'>
 						<div className='col-1'>
+							<h3>Line Controls</h3>
 							<div className='line-width'>
-								<label>Line Width (px) : </label>
+								<label>Line Width(px) : </label>
 								<input
 									type='number'
 									value={this.state.lineWidth}
@@ -252,18 +253,18 @@ export default React.createClass({
 							<div className='buttons'>
 								<button value='pointConnect' className='auto-function' onClick={this.updateAutoFunction}> Auto Click </button>
 								<button value='glitchConnect' className='auto-function' onClick={this.updateAutoFunction}> Auto Glitch </button>
-								<button className='random-color-toggle color-function' value='randomColor' onClick={this.handleColorFunctionUpdate}>Random Colors</button>
-								<button className='random-grayscale-toggle color-function' value='randomGrayscale' onClick={this.handleColorFunctionUpdate}>Random Grayscale</button>
-								<button onClick={this.clearCanvas}>Clear Canvas</button>
-
 							</div>
 						</div>
-						<div className='color-pickers'>
-							<SwatchesPicker onChangeComplete={this.updateLineColor}/>
-							 <SwatchesPicker onChangeComplete={this.updateBackgroundColor}/>
+						<div className='color-controls'>
+							<h3>Color Controls </h3>
+							<div className='color-pickers'>
+								<SwatchesPicker onChangeComplete={this.updateLineColor}/>
+								<SwatchesPicker onChangeComplete={this.updateBackgroundColor}/>
+							</div>
+							<button className='random-color-toggle color-function' value='randomColor' onClick={this.handleColorFunctionUpdate}>Random Colors</button>
+							<button className='random-grayscale-toggle color-function' value='randomGrayscale' onClick={this.handleColorFunctionUpdate}>Random Grayscale</button>
 						</div>
 					</div>
-				</div>
 			</div>
 		)
 	}
