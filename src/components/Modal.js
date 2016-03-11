@@ -13,6 +13,15 @@ export default React.createClass({
 	componentDidMount () {
 		let modalToggle = document.getElementById('modal-toggle');
 		modalToggle.addEventListener('click', this.toggleVisible)
+		window.addEventListener('keypress', (e) => {
+			if (e.keyCode === 100) {
+				this.setState({
+					visible: false
+				})
+			}
+			
+		});
+
 	},
 
 	toggleVisible () {
