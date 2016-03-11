@@ -6,7 +6,7 @@ import ControlPanel from './ControlPanel';
 export default React.createClass({
 	render () {
 		return (
-			<div id='app'>
+			<div id='app' className='app'>
 				<ControlPanel />
 				<Modal />
 			</div>

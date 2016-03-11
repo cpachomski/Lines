@@ -1,4 +1,10 @@
+#app {
+	overflow: hidden !important;
+}
+
+
 .ctrlpanel {
+	overflow: hidden;
 	position: absolute;
 	display: flex;
 	flex-flow: row;
