@@ -84,7 +84,6 @@ export default React.createClass({
 	},
 
 	updateAutoFunction (e) {
-		console.log('hit')
 		if($(e.target).hasClass('active')){
 			this.setState({
 				autoFunction: null
