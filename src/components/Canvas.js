@@ -24,24 +24,24 @@ export default React.createClass({
 
 		if (runFunc == 'pointConnect') {
 
-			let runningFunc = setInterval(() => {
+			this.runningFunc = setInterval(() => {
 				this.autoPointConnect();
 				iterations += 1;
 
 				if (iterations >= this.props.iterations){
-					clearInterval(runningFunc);
+					clearInterval(this.runningFunc);
 				}
 
 			}, this.props.iterationInterval);
 
 		} else if(runFunc == "glitchConnect") {
-			let runningFunc = setInterval(() => {
+			this.runningFunc = setInterval(() => {
 				this.autoGlitchConnect();
 				iterations +=1;
 
 
 				if (iterations >= this.props.iterations){
-					clearInterval(runningFunc);
+					clearInterval(this.runningFunc);
 				}
 
 			}, this.props.iterationInterval);

@@ -26,6 +26,7 @@ export default React.createClass({
 
 	componentDidMount () {
 		window.addEventListener('keypress', (e) => {
+			console.log(e.keyCode);
 			if (e.keyCode === 100) {
 				this.toggleVisible();
 			} else if (e.keyCode === 115) {
@@ -34,8 +35,10 @@ export default React.createClass({
 				this.runAutoDraw();
 			} else if (e.keyCode === 99) {
 				this.clearCanvas();
+			} else if (e.keyCode === 101) {
+				this.clearIntervals();
 			}
-		})
+		}); 
 
 	},
 
@@ -66,6 +69,10 @@ export default React.createClass({
 
 	runAutoDraw () {
 		this._canvas.autoRunner(this.state.autoFunction);
+	},
+
+	clearIntervals () {
+		clearInterval(this._canvas.runningFunc);
 	},
 
 	updateLineColor (color) {
@@ -208,9 +215,10 @@ export default React.createClass({
 						<ul className='control-legend'>
 							<li>Controls</li>
 							<li>D: show/hide controls</li>
-							<li>R: run auto generator</li>
-							<li>S: save the canvas</li>
+							<li>R: run auto generation</li>
+							<li>E: end auto generation</li>
 							<li>C: clear the canvas</li>
+							<li>S: save the canvas</li>
 						</ul>
 					</div>
 					
