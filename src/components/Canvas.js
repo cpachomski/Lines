@@ -41,7 +41,7 @@ export default React.createClass({
 
 
 				if (iterations >= this.props.iterations){
-					clearInterval(window.runningFunc);
+					clearInterval(this.runningFunc);
 				}
 
 			}, this.props.iterationInterval);

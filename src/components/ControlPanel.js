@@ -32,6 +32,7 @@ export default React.createClass({
 			} else if (e.keyCode === 115) {
 				this.printCanvas();
 			} else if (e.keyCode === 114) {
+
 				this.runAutoDraw();
 			} else if (e.keyCode === 99) {
 				this.clearCanvas();
@@ -120,6 +121,7 @@ export default React.createClass({
 	},
 
 	updateIterations (e) {
+		console.log(e.target.value);
 		if(parseInt(e.target.value) >= 0){
 			this.setState({
 				iterations: parseInt(e.target.value)
