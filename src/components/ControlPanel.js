@@ -68,11 +68,17 @@ export default React.createClass({
 	},
 
 	runAutoDraw () {
+		console.log(window.runningFunc);
+		if (window.runningFunc){
+			return;
+		}
+
 		this._canvas.autoRunner(this.state.autoFunction);
 	},
 
 	clearIntervals () {
-		clearInterval(this._canvas.runningFunc);
+		clearInterval(window.runningFunc);
+		window.runningFunc = false;
 	},
 
 	updateLineColor (color) {
@@ -256,7 +262,15 @@ export default React.createClass({
 						<div className='color-controls'>
 							<h3>Color Controls </h3>
 							<div className='color-pickers'>
+								<div className='picker-label'>
+									<label>Line</label>
+									<i className="fa fa-arrows-v"></i>
+								</div>
 								<SwatchesPicker onChangeComplete={this.updateLineColor}/>
+								<div className='picker-label'>
+									<label>Bkg</label>
+									<i className="fa fa-arrows-v"></i>
+								</div>
 								<SwatchesPicker onChangeComplete={this.updateBackgroundColor}/>
 							</div>
 							<button className='random-color-toggle color-function' value='randomColor' onClick={this.handleColorFunctionUpdate}>Random Colors</button>

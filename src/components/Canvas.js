@@ -24,24 +24,24 @@ export default React.createClass({
 
 		if (runFunc == 'pointConnect') {
 
-			this.runningFunc = setInterval(() => {
+			window.runningFunc = setInterval(() => {
 				this.autoPointConnect();
 				iterations += 1;
 
 				if (iterations >= this.props.iterations){
-					clearInterval(this.runningFunc);
+					clearInterval(window.runningFunc);
 				}
 
 			}, this.props.iterationInterval);
 
 		} else if(runFunc == "glitchConnect") {
-			this.runningFunc = setInterval(() => {
+			window.runningFunc = setInterval(() => {
 				this.autoGlitchConnect();
 				iterations +=1;
 
 
 				if (iterations >= this.props.iterations){
-					clearInterval(this.runningFunc);
+					clearInterval(window.runningFunc);
 				}
 
 			}, this.props.iterationInterval);
@@ -55,9 +55,6 @@ export default React.createClass({
 		let randY = this.getRandomPoint(0, this.canvas.height);
 
 		this.coords.push([randX, randY]);
-
-
-
 		this.context.strokeStyle = this.applyColorFunction();
 
 		if (this.coords.length > 1) {
@@ -84,8 +81,6 @@ export default React.createClass({
 			}
 			let newCoord = [newX, newY];
 			this.coords.push(newCoord);
-
-
 
 			this.context.strokeStyle = this.applyColorFunction();
 
