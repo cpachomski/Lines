@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Canvas from './Canvas';
+import ControlLegend from './panel_elements/ControlLegend';
 import {SwatchesPicker} from 'react-color';
 
 import styles from '../styles/control-panel.scss';
@@ -26,7 +27,6 @@ export default React.createClass({
 
 	componentDidMount () {
 		window.addEventListener('keypress', (e) => {
-			console.log(e.keyCode);
 			if (e.keyCode === 100) {
 				this.toggleVisible();
 			} else if (e.keyCode === 115) {
@@ -38,7 +38,7 @@ export default React.createClass({
 			} else if (e.keyCode === 101) {
 				this.clearIntervals();
 			}
-		}); 
+		});
 
 	},
 
@@ -98,12 +98,10 @@ export default React.createClass({
 			$(e.target).removeClass('active');
 		} else {
 			if (e.target.value == 'pointConnect') {
-				console.log('this one');
 				this.setState({
 					autoFunction: 'pointConnect'
 				});
 			} else if (e.target.value == 'glitchConnect') {
-				console.log('glitch');
 				this.setState({
 					autoFunction: 'glitchConnect'
 				});
@@ -112,7 +110,7 @@ export default React.createClass({
 			$(e.target).addClass('active');
 		}
 
-		
+
 	},
 
 	updateIterations (e) {
@@ -211,17 +209,10 @@ export default React.createClass({
 					/>
 					<div className='info'>
 						<h1>Lines</h1>
-						
-						<ul className='control-legend'>
-							<li>Controls</li>
-							<li>D: show/hide controls</li>
-							<li>R: run auto generation</li>
-							<li>E: end auto generation</li>
-							<li>C: clear the canvas</li>
-							<li>S: save the canvas</li>
-						</ul>
+
+						<ControlLegend />
 					</div>
-					
+
 					<div className='controls'>
 						<div className='col-1'>
 							<h3>Line Controls</h3>
