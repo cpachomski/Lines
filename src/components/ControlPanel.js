@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import Canvas from './Canvas';
 import ControlLegend from './panel_elements/ControlLegend';
+import Tooltip from './panel_elements/Tooltip';
 import {SwatchesPicker} from 'react-color';
 
 import styles from '../styles/control-panel.scss';
@@ -16,8 +17,8 @@ export default React.createClass({
 			lineColor: '#444',
 			lineWidth: 1,
 			showMouseCoords: false,
-			iterations: 750,
-			iterationInterval: 10,
+			iterations: 10,
+			iterationInterval: 100,
 			autoFunction: '',
 			glitchModulus: 13,
 			glitchPointDist: 5,
@@ -32,7 +33,9 @@ export default React.createClass({
 			} else if (e.keyCode === 115) {
 				this.printCanvas();
 			} else if (e.keyCode === 114) {
-
+				if (window.autoDraw) {
+					return;
+				}
 				this.runAutoDraw();
 			} else if (e.keyCode === 99) {
 				this.clearCanvas();
@@ -69,7 +72,6 @@ export default React.createClass({
 	},
 
 	runAutoDraw () {
-		console.log(window.runningFunc);
 		if (window.runningFunc){
 			return;
 		}
@@ -121,7 +123,6 @@ export default React.createClass({
 	},
 
 	updateIterations (e) {
-		console.log(e.target.value);
 		if(parseInt(e.target.value) >= 0){
 			this.setState({
 				iterations: parseInt(e.target.value)
@@ -225,7 +226,7 @@ export default React.createClass({
 						<div className='col-1'>
 							<h3>Line Controls</h3>
 							<div className='line-width'>
-								<label>Line Width(px) : </label>
+								<label>Line Width(px)<Tooltip tooltip='line-width' />:</label>
 								<input
 									type='number'
 									value={this.state.lineWidth}
@@ -233,7 +234,7 @@ export default React.createClass({
 								/>
 							</div>
 							<div className='iterations'>
-								<label>Iterations: </label>
+								<label>Iterations<Tooltip tooltip='iterations' />:</label>
 								<input
 									type='number'
 									value={this.state.iterations}
@@ -241,7 +242,7 @@ export default React.createClass({
 								/>
 							</div>
 							<div className='interval'>
-								<label>Interval: </label>
+								<label>Interval<Tooltip tooltip='interval' />:</label>
 								<input
 									type='number'
 									value={this.state.iterationInterval}
@@ -249,7 +250,7 @@ export default React.createClass({
 								/>
 							</div>
 							<div className='glitch-modulus'>
-								<label>Glitch Modulus: </label>
+								<label>Glitch Modulus<Tooltip tooltip='glitch-modulus' />:</label>
 								<input
 									type='number'
 									value={this.state.glitchModulus}
@@ -257,6 +258,7 @@ export default React.createClass({
 								/>
 							</div>
 							<div className='buttons'>
+								<h3>Auto Generators</h3>
 								<button value='pointConnect' className='auto-function' onClick={this.updateAutoFunction}> Auto Click </button>
 								<button value='glitchConnect' className='auto-function' onClick={this.updateAutoFunction}> Auto Glitch </button>
 							</div>
