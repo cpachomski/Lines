@@ -30,10 +30,7 @@ export default React.createClass({
   },
 
   render () {
-    // console.log(this.props.tooltip);
-    // console.log(this.state.open);
     const isVisible = this.state.hovered ? 'tooltip-content visible' : 'tooltip-content';
-    console.log(isVisible);
 
     return (
       <div className='tooltip' key={this.props.tooltip}>
