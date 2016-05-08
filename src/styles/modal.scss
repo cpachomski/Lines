@@ -13,7 +13,7 @@
 	}
 
 	> h3 {
-		color: #444;
+		color: white;
 		font-size: 90px;
 		margin-bottom: 0px;
 		margin-top: 25px;
@@ -36,6 +36,7 @@
 		opacity: 0;
 		animation: fadein 1.2s ease-in forwards;
 		animation-delay: 2s;
+		color: white;
 		&:hover {
 			cursor: pointer;
 		}
@@ -50,7 +51,7 @@
 		> span {
 			display: block;
 			font-size: 25px;
-			color: black;
+			color: white;
 			min-width: 450px;
 			text-align: center;
 
