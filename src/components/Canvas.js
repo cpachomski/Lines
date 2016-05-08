@@ -1,5 +1,5 @@
 import React from 'react';
-import SetIntervalMixin from './SetIntervalMixin';
+import SetIntervalMixin from './helpers/SetIntervalMixin';
 import ColorFunctions from './ColorFunctions';
 
 import '../styles/app.scss';

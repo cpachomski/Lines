@@ -3,6 +3,7 @@ import $ from 'jquery';
 import Canvas from './Canvas';
 import ControlLegend from './panel_elements/ControlLegend';
 import Tooltip from './panel_elements/Tooltip';
+import Printer from './helpers/Printer';
 import {SwatchesPicker} from 'react-color';
 
 import styles from '../styles/control-panel.scss';
@@ -31,7 +32,7 @@ export default React.createClass({
 			if (e.keyCode === 100) {
 				this.toggleVisible();
 			} else if (e.keyCode === 115) {
-				this.printCanvas();
+				Printer.printCanvas(this._canvas, this.state);
 			} else if (e.keyCode === 114) {
 				if (window.autoDraw) {
 					return;
@@ -152,27 +153,6 @@ export default React.createClass({
 		})
 	},
 
-	printCanvas () {
-		let w = this._canvas.canvas.width;
-		let h = this._canvas.canvas.height;
-		let data = this._canvas.context.getImageData(0,0,w,h);
-		let compositeOperation = this._canvas.context.globalCompositeOperation;
-
-		this._canvas.context.globalCompositeOperation = "destination-over";
-		this._canvas.context.fillStyle = this.state.backgroundColor;
-		this._canvas.context.fillRect(0,0,w,h);
-
-
-		let canvasDataURL = this._canvas.canvas.toDataURL('image/png');
-
-		this._canvas.context.clearRect(0,0,w,h);
-		this._canvas.context.putImageData(data, 0,0);
-		this._canvas.context.globalCompositeOperation = compositeOperation;
-
-		let win=window.open();
-		win.document.write("<br><img src='"+canvasDataURL+"'/>");
-	},
-
 	handleColorFunctionUpdate (e) {
 
 		if($(e.target).hasClass('active')){
@@ -195,7 +175,6 @@ export default React.createClass({
 			$(e.target).addClass('active');
 		}
 	},
-
 
 	clearCanvas () {
 		this._canvas.context.clearRect(0, 0, canvas.width, canvas.height)
