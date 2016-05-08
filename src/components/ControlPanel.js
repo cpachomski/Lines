@@ -226,36 +226,40 @@ export default React.createClass({
 						<div className='col-1'>
 							<h3>Line Controls</h3>
 							<div className='line-width'>
-								<label>Line Width(px)<Tooltip tooltip='line-width' />:</label>
+								<label>Line Width(px):</label>
 								<input
 									type='number'
 									value={this.state.lineWidth}
 									onChange={this.updateLineWidth}
 								/>
+								<Tooltip tooltip='line-width' />
 							</div>
 							<div className='iterations'>
-								<label>Iterations<Tooltip tooltip='iterations' />:</label>
+								<label>Iterations:</label>
 								<input
 									type='number'
 									value={this.state.iterations}
 									onChange={this.updateIterations}
 								/>
+								<Tooltip tooltip='iterations' />
 							</div>
 							<div className='interval'>
-								<label>Interval<Tooltip tooltip='interval' />:</label>
+								<label>Interval:</label>
 								<input
 									type='number'
 									value={this.state.iterationInterval}
 									onChange={this.updateIterationInterval}
 								/>
+								<Tooltip tooltip='interval' />
 							</div>
 							<div className='glitch-modulus'>
-								<label>Glitch Modulus<Tooltip tooltip='glitch-modulus' />:</label>
+								<label>Glitch Modulus:</label>
 								<input
 									type='number'
 									value={this.state.glitchModulus}
 									onChange={this.updateGlitchModulus}
-								/>
+								></input>
+								<Tooltip tooltip='glitch-modulus' />
 							</div>
 							<div className='buttons'>
 								<h3>Auto Generators</h3>
