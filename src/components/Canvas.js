@@ -30,6 +30,7 @@ export default React.createClass({
 
 				if (iterations >= this.props.iterations){
 					clearInterval(window.runningFunc);
+					window.runningFunc = false;
 				}
 
 			}, this.props.iterationInterval);
@@ -39,15 +40,16 @@ export default React.createClass({
 				this.autoGlitchConnect();
 				iterations +=1;
 
-
 				if (iterations >= this.props.iterations){
-					clearInterval(this.runningFunc);
+					clearInterval(window.runningFunc);
+					window.runningFunc = false;
 				}
 
 			}, this.props.iterationInterval);
 		} else {
 			return;
 		}
+
 	},
 
 	autoPointConnect () {

@@ -34,9 +34,6 @@ export default React.createClass({
 			} else if (e.keyCode === 115) {
 				Printer.printCanvas(this._canvas, this.state);
 			} else if (e.keyCode === 114) {
-				if (window.autoDraw) {
-					return;
-				}
 				this.runAutoDraw();
 			} else if (e.keyCode === 99) {
 				this.clearCanvas();
