@@ -4,7 +4,7 @@ Lines
 
 Make your own graph art or have it make itself.
 
-![Lines Dashboard](http://imgur.com/LPzWDXz)
+![Lines Dashboard](http://i.imgur.com/LPzWDXz.jpg)
 
 
 
